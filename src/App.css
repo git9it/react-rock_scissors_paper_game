@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+body {
+  font-family: 'Press Start 2P', sans-serif;
+  color: #eee;
+  background-color: #222;
+  /* background-color: #60b347; */
+}
+
+.ui-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  border: 1px solid;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  width: 1300px;
+  margin: 0 auto;
+  height: 1100px;
+
+  max-width: 100%;
+}
+.rows-3 {
+  justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+  border: 2px dotted;
+  max-height: 450px;
+  max-width: 450px;
+}
+.rows-vs-3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 450px;
+  margin: 10px;
+  font-size: 200%;
+}
+.ui-name {
+  display: flex;
+  justify-content: center;
+}
+.ui-rsp-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 500%;
+  height: 300px;
+  width: 300px;
+  margin: 10px;
+  border: 2px dotted;
+}
+.ui-rsp-choose {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 50px;
+}
+.ui-control-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid;
+  min-height: 45px;
+}
+
+.btn {
+  border: none;
+  background-color: #eee;
+  color: #222;
+  font-size: 2rem;
+  font-family: inherit;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.choose {
+  padding: 1px 5px;
+}
+
+.btn:hover {
+  background-color: #ccc;
+}
+
+.ui-alert {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 45px;
+}
+
+.win {
+  color: rgb(39, 169, 6);
+}
