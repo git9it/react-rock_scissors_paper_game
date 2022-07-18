@@ -13,6 +13,48 @@ body {
   /* background-color: #60b347; */
 }
 
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.navbar {
+  background: #373737;
+  color: #fff;
+  height: 60px;
+}
+
+.navbar .logo {
+  font-size: x-large;
+  font-weight: bolder;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.navbar a:hover {
+  color: rgb(170, 170, 170);
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.navbar ul {
+  display: flex;
+}
+
+.navbar ul li {
+  margin-left: 20px;
+}
+
 .ui-container {
   display: flex;
   justify-content: center;
@@ -98,8 +140,14 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 45px;
+  font-size: 200%;
+  margin: 10px;
 }
 
 .win {
   color: rgb(39, 169, 6);
+}
+
+.defeat {
+  color: rgb(180, 4, 4);
 }

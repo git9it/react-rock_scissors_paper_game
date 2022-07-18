@@ -1,0 +1,280 @@
+{
+	"compiler": {
+		"version": "0.8.15+commit.e14f2714"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_userwallet",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_userBet",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_userChoice",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_botChoice",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_roundWinner",
+						"type": "uint256"
+					}
+				],
+				"name": "GameResultsEvent",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "AllGamesResults",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "userWallet",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "userBet",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "userChoice",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "botChoice",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "roundWinner",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_userChoice",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_botChoice",
+						"type": "uint256"
+					}
+				],
+				"name": "checkWinner",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "claim",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getFunds",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getLastGameResults",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint8",
+						"name": "_seed",
+						"type": "uint8"
+					}
+				],
+				"name": "getRandom",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_userChoice",
+						"type": "uint256"
+					}
+				],
+				"name": "roundResults",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "address",
+								"name": "userWallet",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "userBet",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "userChoice",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "botChoice",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "roundWinner",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct RspGame.GameResults[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "winnersMap",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/RSP-game.sol": "RspGame"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/RSP-game.sol": {
+			"keccak256": "0x4bf66e601f61527ecfdc283281f6db1f1266d90c3f450637501edcf5eec7f98c",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://a48cf07df4d9ba3e72e476c0aa26557e1e28dc6689bfbe1c5442cf1bad385ea7",
+				"dweb:/ipfs/QmdZ2VrFBUX8ruB6TkHzKtAzixTeWvpUpuTxrXzVYbB1Sd"
+			]
+		}
+	},
+	"version": 1
+}
