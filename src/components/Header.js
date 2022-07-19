@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Header() {
+function Header({ balance, claim }) {
   return (
     <nav className="navbar">
       <div className="container">
@@ -12,7 +12,16 @@ function Header() {
             </a>
           </li>
           <li>
-            <a href="/">Впн</a>
+            <div className={balance ? 'ui-balance' : 'ui-balance hide'}>
+              Баланс: {balance} wei
+              <button
+                className="btn small"
+                disabled={balance === 0 ? true : false}
+                onClick={() => claim()}
+              >
+                получить
+              </button>
+            </div>
           </li>
         </ul>
       </div>

@@ -1,10 +1,29 @@
 {
 	"compiler": {
-		"version": "0.8.15+commit.e14f2714"
+		"version": "0.8.7+commit.e28d00a7"
 	},
 	"language": "Solidity",
 	"output": {
 		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "payee",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "weiAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "Deposited",
+				"type": "event"
+			},
 			{
 				"anonymous": false,
 				"inputs": [
@@ -114,56 +133,20 @@
 					}
 				],
 				"name": "claim",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "deposit",
+				"outputs": [],
 				"stateMutability": "payable",
 				"type": "function"
 			},
 			{
 				"inputs": [],
 				"name": "getFunds",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "getLastGameResults",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint8",
-						"name": "_seed",
-						"type": "uint8"
-					}
-				],
-				"name": "getRandom",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -268,11 +251,11 @@
 	},
 	"sources": {
 		"contracts/RSP-game.sol": {
-			"keccak256": "0x4bf66e601f61527ecfdc283281f6db1f1266d90c3f450637501edcf5eec7f98c",
+			"keccak256": "0x9b191d6d07f38a1a78551209a60581158cf8562bf4ae7716616e3b14f8872502",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://a48cf07df4d9ba3e72e476c0aa26557e1e28dc6689bfbe1c5442cf1bad385ea7",
-				"dweb:/ipfs/QmdZ2VrFBUX8ruB6TkHzKtAzixTeWvpUpuTxrXzVYbB1Sd"
+				"bzz-raw://b1e09adb1d7a2b9ae5dab2fc2a245189e6daeb3298a450c27175285e10b87205",
+				"dweb:/ipfs/QmSamWKQBvgAv7nBZhzL7chG3aryRKNkuAngn79SthgoS7"
 			]
 		}
 	},

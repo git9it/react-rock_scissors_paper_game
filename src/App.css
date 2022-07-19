@@ -12,6 +12,9 @@ body {
   background-color: #222;
   /* background-color: #60b347; */
 }
+ul {
+  list-style-type: none;
+}
 
 .container {
   max-width: 1400px;
@@ -68,7 +71,7 @@ body {
   flex-direction: column;
   width: 1300px;
   margin: 0 auto;
-  height: 1100px;
+  height: auto;
 
   max-width: 100%;
 }
@@ -76,9 +79,10 @@ body {
   justify-content: space-around;
   display: flex;
   flex-direction: column;
-  border: 2px dotted;
+  border: 1px solid;
   max-height: 450px;
   max-width: 450px;
+  margin: 10px;
 }
 .rows-vs-3 {
   display: flex;
@@ -91,6 +95,7 @@ body {
 .ui-name {
   display: flex;
   justify-content: center;
+  margin-top: 10px;
 }
 .ui-rsp-image {
   display: flex;
@@ -101,20 +106,43 @@ body {
   height: 300px;
   width: 300px;
   margin: 10px;
-  border: 2px dotted;
+  border: 1px solid;
 }
 .ui-rsp-choose {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   height: 50px;
 }
+
+.ui-rsp-choose.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+}
+
 .ui-control-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid;
+  /* border: 1px solid; */
   min-height: 45px;
+}
+
+input {
+  --tw-shadow: 0 0 #0000;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  border-color: #6b7280;
+  border-radius: 0;
+  border-width: 1px;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  padding: 0.5rem 0.75rem;
+  margin: 5px;
 }
 
 .btn {
@@ -125,6 +153,12 @@ body {
   font-family: inherit;
   padding: 0.5rem 1rem;
   cursor: pointer;
+  margin: 4px;
+}
+
+.btn.small {
+  font-size: 1rem;
+  padding: 0.1rem 1rem;
 }
 
 .choose {
@@ -135,12 +169,26 @@ body {
   background-color: #ccc;
 }
 
+.btn:disabled {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  cursor: default;
+}
+
 .ui-alert {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 45px;
   font-size: 200%;
+  margin: 10px;
+}
+.ui-alert.msg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 90%;
   margin: 10px;
 }
 
@@ -150,4 +198,48 @@ body {
 
 .defeat {
   color: rgb(180, 4, 4);
+}
+.ui-balance {
+  font-size: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.hide {
+  display: none;
+}
+
+.footer {
+  background: #373737;
+  color: #fff;
+  height: 60px;
+  margin-top: 110px;
+}
+
+.footer ul {
+  display: flex;
+}
+.footer a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.footer a:hover {
+  color: rgb(170, 170, 170);
+}
+
+.footer-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
 }
