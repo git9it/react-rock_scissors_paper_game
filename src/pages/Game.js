@@ -10,6 +10,7 @@ function Game({ contract, account, getBalance }) {
   const [userBet, setUserBet] = useState(0);
   const [botBet, setBotBet] = useState(3);
   const [roundResults, setRoundResults] = useState(3);
+  const [loading, setLoading] = useState(false);
 
   const checkEvents = async () => {
     const filter = contract.filters.GameResultsEvent(account);
@@ -18,6 +19,7 @@ function Game({ contract, account, getBalance }) {
       (_userwallet, _userBet, _userChoice, _botChoice, _roundWinner) => {
         setBotBet(_botChoice.toNumber());
         setRoundResults(_roundWinner.toNumber());
+        setLoading(false);
       }
     );
   };
@@ -29,6 +31,7 @@ function Game({ contract, account, getBalance }) {
       newdata.isBetValid = false;
       setData(newdata);
     } else {
+      setLoading(true);
       const newdata = { ...data };
 
       newdata.isBetValid = true;
@@ -38,8 +41,8 @@ function Game({ contract, account, getBalance }) {
         value: ethers.utils.parseUnits(`${data.betValue}`, 'wei'),
       });
       await res.wait();
-      checkEvents();
-      getBalance();
+      await checkEvents();
+      await getBalance();
     }
   };
 
@@ -117,7 +120,7 @@ function Game({ contract, account, getBalance }) {
       </div>
       <div className="ui-control-container">
         <button className="btn" onClick={() => playGame()}>
-          Играть!
+          {loading ? 'загрузка...' : 'Играть!'}
         </button>
       </div>
       {data.isBetValid === false ? (
