@@ -32,7 +32,7 @@ function App() {
       setAccount(accounts[0]);
       setContract(
         new ethers.Contract(
-          '0x71C95911E9a5D330f4D621842EC243EE1343292e',
+          '0x6D6c62e6cc60535E717C7259ea2b69cbF016452B',
           RspGame.abi,
           newSigner
         )
