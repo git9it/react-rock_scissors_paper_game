@@ -2,8 +2,15 @@ import React, { useState } from 'react';
 import { ethers } from 'ethers';
 import SimpleAlert from '../components/SimpleAlert';
 import Modal from '../components/Modal';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Game({ contract, account, getBalance }) {
+  const notify = (msg) =>
+    toast.error(msg, {
+      position: toast.POSITION.BOTTOM_RIGHT,
+    });
+
   const [data, setData] = useState({
     betValue: '',
     betUnit: 'wei',
@@ -27,7 +34,7 @@ function Game({ contract, account, getBalance }) {
   };
 
   const playGame = async () => {
-    if (!data.betValue || data.betValue < 1 || data.betValue >= 10000000) {
+    if (!data.betValue || data.betValue < 1) {
       const newdata = { ...data };
 
       newdata.isBetValid = false;
@@ -44,8 +51,15 @@ function Game({ contract, account, getBalance }) {
           value: ethers.utils.parseUnits(`${data.betValue}`, `${data.betUnit}`),
         });
         await res.wait();
-      } catch (e) {
-        console.log(e.code);
+      } catch (err) {
+        setLoading(false);
+        if (err.code === 'INSUFFICIENT_FUNDS') {
+          notify('Недостаточно средств!');
+        } else {
+          notify(err.code);
+        }
+
+        console.log(err.code);
       }
 
       await checkEvents();
@@ -86,6 +100,7 @@ function Game({ contract, account, getBalance }) {
 
   return (
     <div className="main-container">
+      <ToastContainer />
       <Modal showModal={false}>123</Modal>
       <div className="ui-container">
         <div className="rows-3">
