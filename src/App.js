@@ -28,27 +28,38 @@ function App() {
         method: 'eth_requestAccounts',
       });
       const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const newSigner = provider.getSigner();
-      setAccount(accounts[0]);
-      setContract(
-        new ethers.Contract(
-          '0x6D6c62e6cc60535E717C7259ea2b69cbF016452B',
-          RspGame.abi,
-          newSigner
-        )
-      );
+      const network = await provider.getNetwork();
+      // const chainId = network.chainId;
+      if (network.chainId != 4) {
+        console.log('wrong network');
+      } else {
+        const newSigner = provider.getSigner();
+        setAccount(accounts[0]);
+        setContract(
+          new ethers.Contract(
+            '0x6D6c62e6cc60535E717C7259ea2b69cbF016452B',
+            RspGame.abi,
+            newSigner
+          )
+        );
+      }
     } else {
       console.log('Need the metamask extension for play!');
     }
   };
 
   useEffect(() => {
-    initConnection();
+    // initConnection();
   }, []);
 
   return (
     <>
-      <Header balance={balance} claim={claim} />
+      <Header
+        balance={balance}
+        claim={claim}
+        initConnection={initConnection}
+        contract={contract}
+      />
       <Game
         name={name}
         setName={setName}

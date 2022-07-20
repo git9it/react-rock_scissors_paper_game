@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { ethers } from 'ethers';
 import SimpleAlert from '../components/SimpleAlert';
+import Modal from '../components/Modal';
 
 function Game({ contract, account, getBalance }) {
   const [data, setData] = useState({
     betValue: '',
+    betUnit: 'wei',
     isBetValid: '',
   });
   const [userBet, setUserBet] = useState(0);
@@ -37,10 +39,15 @@ function Game({ contract, account, getBalance }) {
       newdata.isBetValid = true;
       setData(newdata);
       setBotBet(3);
-      let res = await contract.roundResults(`${userBet}`, {
-        value: ethers.utils.parseUnits(`${data.betValue}`, 'wei'),
-      });
-      await res.wait();
+      try {
+        let res = await contract.roundResults(`${userBet}`, {
+          value: ethers.utils.parseUnits(`${data.betValue}`, `${data.betUnit}`),
+        });
+        await res.wait();
+      } catch (e) {
+        console.log(e.code);
+      }
+
       await checkEvents();
       await getBalance();
     }
@@ -67,8 +74,19 @@ function Game({ contract, account, getBalance }) {
     setUserBet(userBet - 1);
   }
 
+  const handleUnitChange = (event) => {
+    console.log(event.target.value);
+    const newdata = { ...data };
+
+    newdata.betUnit = event.target.value;
+    setData(newdata);
+
+    console.log(data);
+  };
+
   return (
     <div className="main-container">
+      <Modal showModal={false}>123</Modal>
       <div className="ui-container">
         <div className="rows-3">
           <div className="ui-name">HUMAN</div>
@@ -113,20 +131,26 @@ function Game({ contract, account, getBalance }) {
           placeholder="bet"
         />
         {'  '}
-        wei
+        <select value={data.betUnit} onChange={handleUnitChange}>
+          <option value="wei">Wei</option>
+          <option value="gwei">Gwei</option>
+          <option value="ether">Ether</option>
+        </select>
       </div>
       <div className="ui-control-container">
-        Возможный выигрыш: {(data.betValue * 2).toFixed(0)} wei
+        Возможный выигрыш: {(data.betValue * 2).toFixed(0)} {data.betUnit}
       </div>
       <div className="ui-control-container">
-        <button className="btn" onClick={() => playGame()}>
-          {loading ? 'загрузка...' : 'Играть!'}
-        </button>
+        {!contract ? (
+          'Для старта игры подключите метамаск'
+        ) : (
+          <button className="btn" onClick={() => playGame()}>
+            {loading ? 'загрузка...' : 'Играть!'}
+          </button>
+        )}
       </div>
       {data.isBetValid === false ? (
-        <div className="ui-alert msg">
-          Минимальная ставка 1 wei, максимальная 10000000 wei
-        </div>
+        <div className="ui-alert msg">Минимальная ставка 1 wei</div>
       ) : null}
       <SimpleAlert
         classname={
