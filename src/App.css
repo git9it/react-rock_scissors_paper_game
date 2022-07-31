@@ -192,6 +192,10 @@ input {
   margin: 10px;
 }
 
+.ui-alert.hide {
+  display: none;
+}
+
 .win {
   color: rgb(39, 169, 6);
 }

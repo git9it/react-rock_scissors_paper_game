@@ -5,21 +5,33 @@ import Game from './pages/Game';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import RspGame from './artifacts/RspGame.sol/RspGame.json';
+import { useAppContext } from './context/appContext';
 
 function App() {
+  const { notify } = useAppContext();
   //web3states
   const [name, setName] = useState('');
   const [account, setAccount] = useState('');
   const [contract, setContract] = useState(null);
   const [balance, setBalance] = useState('');
+  const [contractBalance, setContractBalance] = useState('');
+  const [isConnected, setIsConnected] = useState(false);
+  let test = null;
 
   const getBalance = async () => {
     let res = await contract.winnersMap(account);
     setBalance(res.toString());
   };
+
   const claim = async () => {
     await contract.claim(balance);
     setBalance(0);
+  };
+
+  const getContractBalance = async () => {
+    let res = await contract.getFunds();
+    setContractBalance(res.toString());
+    return res.toString();
   };
 
   const initConnection = async () => {
@@ -29,9 +41,9 @@ function App() {
       });
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const network = await provider.getNetwork();
-      // const chainId = network.chainId;
+
       if (network.chainId != 4) {
-        console.log('wrong network');
+        notify('Для игры необходимо выбрать сеть Rinkeby');
       } else {
         const newSigner = provider.getSigner();
         setAccount(accounts[0]);
@@ -42,14 +54,23 @@ function App() {
             newSigner
           )
         );
+        setIsConnected(true);
       }
     } else {
-      console.log('Need the metamask extension for play!');
+      notify('Для игры нужно расширение Metamask');
     }
   };
 
   useEffect(() => {
-    // initConnection();
+    if (window.ethereum) {
+      window.ethereum.on('chainChanged', (_chainId) =>
+        window.location.reload()
+      );
+      return () =>
+        window.ethereum.removeListener('chainChanged', (_chainId) =>
+          window.location.reload()
+        );
+    }
   }, []);
 
   return (
@@ -58,14 +79,17 @@ function App() {
         balance={balance}
         claim={claim}
         initConnection={initConnection}
-        contract={contract}
+        isConnected={isConnected}
       />
       <Game
         name={name}
         setName={setName}
         account={account}
+        isConnected={isConnected}
         contract={contract}
         getBalance={getBalance}
+        contractBalance={contractBalance}
+        getContractBalance={getContractBalance}
       />
       <Footer />
     </>

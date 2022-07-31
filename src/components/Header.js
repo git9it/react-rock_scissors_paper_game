@@ -1,15 +1,15 @@
 import React from 'react';
+import { useAppContext } from '../context/appContext';
 
-function Header({ balance, claim, initConnection, contract }) {
+function Header({ balance, claim, initConnection, isConnected }) {
+  const { notify } = useAppContext();
   return (
     <nav className="navbar">
       <div className="container">
         <div className="logo">КНБ RinkebyETH</div>
         <ul className="nav">
           <li>
-            <a onClick={console.log('click')} href="#">
-              Правила
-            </a>
+            <a href="#">Правила</a>
           </li>
           <li>
             <a href="https://rinkebyfaucet.com/" target="_blank">
@@ -17,7 +17,7 @@ function Header({ balance, claim, initConnection, contract }) {
             </a>
           </li>
           <li>
-            {!contract ? (
+            {!isConnected ? (
               <button className="btn small" onClick={() => initConnection()}>
                 Connect Metamask
               </button>
