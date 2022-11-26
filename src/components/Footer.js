@@ -13,7 +13,7 @@ function Footer() {
               Github
             </a>
           </li>
-          <li>TG:@regasec</li>
+          <li>TG:@regasek</li>
         </ul>
       </div>
     </div>

@@ -8,12 +8,10 @@ function Header({ balance, claim, initConnection, isConnected }) {
       <div className="container">
         <div className="logo">КНБ RinkebyETH</div>
         <ul className="nav">
+
           <li>
-            <a href="#">Правила</a>
-          </li>
-          <li>
-            <a href="https://rinkebyfaucet.com/" target="_blank">
-              Rinkeby кран
+            <a href="https://goerlifaucet.com/" target="_blank">
+              Goerli кран
             </a>
           </li>
           <li>
