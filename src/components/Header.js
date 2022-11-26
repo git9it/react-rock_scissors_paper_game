@@ -6,9 +6,8 @@ function Header({ balance, claim, initConnection, isConnected }) {
   return (
     <nav className="navbar">
       <div className="container">
-        <div className="logo">КНБ RinkebyETH</div>
+        <div className="logo">КНБ GoerliETH</div>
         <ul className="nav">
-
           <li>
             <a href="https://goerlifaucet.com/" target="_blank">
               Goerli кран
